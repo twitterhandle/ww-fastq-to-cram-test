@@ -1,0 +1,34 @@
+{
+  "PairedFastqsToUnmappedCram.batchInfo": [
+    {
+      "datasetID": "TF-WGS",
+      "sampleName": "HG00651",
+      "libraryName": "HG00651",
+      "sequencingCenter": "1000-Genomes",
+      "filepaths": [ {
+        "flowcellName": "20120522",
+        "fastqR1Locations": [
+          "/fh/scratch/delete90/_DaSL/user/tfirman/dasl-trbio-wgs-fasq-to-unmapped-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R1.fastq.gz"
+        ],
+        "fastqR2Locations": [
+          "/fh/scratch/delete90/_DaSL/user/tfirman/dasl-trbio-wgs-fasq-to-unmapped-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R2.fastq.gz"
+        ]
+      }]
+    },
+    {
+      "datasetID": "TF-WGS",
+      "sampleName": "HG01124",
+      "libraryName": "HG01124",
+      "sequencingCenter": "1000-Genomes",
+      "filepaths": [ {
+        "flowcellName": "20120522",
+        "fastqR1Locations": [
+          "/fh/scratch/delete90/_DaSL/user/tfirman/dasl-trbio-wgs-fasq-to-unmapped-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R1.fastq.gz"
+        ],
+        "fastqR2Locations": [
+          "/fh/scratch/delete90/_DaSL/user/tfirman/dasl-trbio-wgs-fasq-to-unmapped-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R2.fastq.gz"
+        ]
+      }]
+    }
+  ]
+}
