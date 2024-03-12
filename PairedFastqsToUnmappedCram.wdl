@@ -6,16 +6,16 @@ version 1.0
 
 struct flowcellFastqs {
   String flowcellName # name of flowcell 
-  Array[File] fastqR1Locations # list of input R1 fastq file locations
-  Array[File] fastqR2Locations # list of input R2 fastq file locations
+  Array[File] fastqR1Locations # array of input R1 fastq file locations
+  Array[File] fastqR2Locations # array of input R2 fastq file locations
 }
 
 struct inputData {
   String datasetID # unique ID to identify a particular dataset, even if sampleName is not unique
   String sampleName # sample name to insert into the read group header
   String libraryName # library name to place into the LB attribute in the read group header
-  String sequencingCenter # where the sample was sequenced
-  Array[flowcellFastqs] filepaths # list of flowcell fastq file locations
+  String sequencingCenter # location where the sample was sequenced
+  Array[flowcellFastqs] filepaths # array of flowcell fastq file locations
 }
 
 #### WORKFLOW DEFINITION
@@ -45,7 +45,7 @@ workflow PairedFastqsToUnmappedCram {
       }
     } # End flowcell scatter
 
-    call mergeBamstoCram { # then for each of the flowcells that library was run on, merge all the unmapped bams into one unmapped bam for the library
+    call mergeBamstoCram { # then for each flowcell, merge all unmapped bams into one unmapped cram for the library
       input:
         bamsToMerge = FastqtoUnmappedBam.unmappedbam,
         base_file_name = base_file_name,
@@ -67,6 +67,14 @@ workflow PairedFastqsToUnmappedCram {
     Array[File] unmappedCramIndexes = mergeBamstoCram.crai
     Array[File] validation = ValidateCram.validation
   }
+
+  parameter_meta (
+    batchInfo: "array of inputData structs describing the relevant metadata for each sample"
+
+    unmappedCrams: "array of unmapped cram files for each sample"
+    unmappedCramIndexes: "array of index files for each unmapped cram file"
+    validation: "text file containing all relevant validation statistics for the cram in question"
+  )
 } # End workflow
 
 #### TASK DEFINITIONS
@@ -84,7 +92,7 @@ task FastqtoUnmappedBam {
     String docker
   }
 
-  command {
+  command <<<
     set -eo pipefail
     gatk --java-options "-Dsamjdk.compression_level=5 -Xms4g" \
     FastqToSam \
@@ -96,6 +104,10 @@ task FastqtoUnmappedBam {
       --LIBRARY_NAME ~{libraryName} \
       --PLATFORM illumina \
       --SEQUENCING_CENTER ~{sequencingCenter}
+  >>>
+
+  output {
+    File unmappedbam = "~{base_file_name}.unmapped.bam"
   }
 
   runtime {
@@ -104,9 +116,18 @@ task FastqtoUnmappedBam {
     docker: docker
   }
 
-  output {
-    File unmappedbam = "~{base_file_name}.unmapped.bam"
-  }
+  parameter_meta (
+    R1fastq: "array of R1 fastq files for the library in question"
+    R2fastq: "array of R2 fastq files for the library in question"
+    base_file_name: "base file name to use in the read group and bam file names"
+    sampleName: "name of the sample in question"
+    flowcellName: "name of the flowcell on which the sample is being sequenced"
+    libraryName: "name of the library in question"
+    sequencingCenter: "location where the sample was sequenced"
+    docker: "location of Docker image to use for this task"
+
+    unmappedbam: "final unmapped bam file containing the reads from the fastqs in question"
+  )
 }
 
 # Validates cram files for formatting issues. 
@@ -117,13 +138,17 @@ task ValidateCram {
     String docker
   }
 
-  command {
+  command <<<
     set -eo pipefail
     gatk --java-options "-Dsamjdk.compression_level=5 -Xms2g" \
       ValidateSamFile \
         --INPUT ~{unmappedCram} \
         --MODE SUMMARY \
         --IGNORE_WARNINGS false > ~{base_file_name}.validation.txt
+  >>>
+
+  output {
+    File validation = "~{base_file_name}.validation.txt"
   }
 
   runtime {
@@ -132,9 +157,13 @@ task ValidateCram {
     docker: docker
   }
 
-  output {
-    File validation = "~{base_file_name}.validation.txt"
-  }
+  parameter_meta (
+    unmappedCram: "unmapped cram file to validate"
+    base_file_name: "base file name to use when saving the validation text file"
+    docker: "location of Docker image to use for this task"
+
+    validation: "text file containing all relevant validation statistics for the cram in question"
+  )
 }
 
 # Merges multiple bam files into a single cram file
@@ -146,11 +175,16 @@ task mergeBamstoCram {
     Int threads
   }
 
-  command {
+  command <<<
     set -eo pipefail
     samtools merge -@ ~{threads-1} \
       --write-index --output-fmt CRAM  \
       ~{base_file_name}.merged.cram ~{sep=" " bamsToMerge} 
+  >>>
+
+  output {
+    File cram = "~{base_file_name}.merged.cram"
+    File crai = "~{base_file_name}.merged.cram.crai"
   }
 
   runtime {
@@ -158,8 +192,13 @@ task mergeBamstoCram {
     cpu: threads
   }
 
-  output {
-    File cram = "~{base_file_name}.merged.cram"
-    File crai = "~{base_file_name}.merged.cram.crai"
-  }
+  parameter_meta (
+    bamsToMerge: "array of bam files to merge into a single cram file"
+    base_file_name: "base file name to use when saving the cram file"
+    docker: "location of Docker image to use for this task"
+    threads: "number of threads to use during the merging process"
+
+    cram: "final cram file containing all reads"
+    crai: "index file of final cram"
+  )
 }
