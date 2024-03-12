@@ -1,31 +1,31 @@
 {
-  "PairedFastqsToUnmappedCram.batchInfo": [
+  "PairedFastqsToUnmappedCram.batch_info": [
     {
-      "datasetID": "TF-WGS",
-      "sampleName": "HG00651",
-      "libraryName": "HG00651",
-      "sequencingCenter": "1000-Genomes",
+      "dataset_id": "TF-WGS",
+      "sample_name": "HG00651",
+      "library_name": "HG00651",
+      "sequencing_center": "1000-Genomes",
       "filepaths": [ {
-        "flowcellName": "20120522",
-        "fastqR1Locations": [
+        "flowcell_name": "20120522",
+        "fastq_r1_locations": [
           "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R1.fastq.gz"
         ],
-        "fastqR2Locations": [
+        "fastq_r2_locations": [
           "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R2.fastq.gz"
         ]
       }]
     },
     {
-      "datasetID": "TF-WGS",
-      "sampleName": "HG01124",
-      "libraryName": "HG01124",
-      "sequencingCenter": "1000-Genomes",
+      "dataset_id": "TF-WGS",
+      "sample_name": "HG01124",
+      "library_name": "HG01124",
+      "sequencing_center": "1000-Genomes",
       "filepaths": [ {
-        "flowcellName": "20120522",
-        "fastqR1Locations": [
+        "flowcell_name": "20120522",
+        "fastq_r1_locations": [
           "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R1.fastq.gz"
         ],
-        "fastqR2Locations": [
+        "fastq_r2_locations": [
           "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R2.fastq.gz"
         ]
       }]
