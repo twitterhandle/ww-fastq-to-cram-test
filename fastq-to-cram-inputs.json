@@ -1,33 +1,25 @@
 {
   "PairedFastqsToUnmappedCram.batch_info": [
     {
-      "dataset_id": "TF-WGS",
-      "sample_name": "HG00651",
-      "library_name": "HG00651",
+      "dataset_id": "TESTFASTQ1",
+      "sample_name": "HG02635",
+      "library_name": "SRR581005",
       "sequencing_center": "1000-Genomes",
-      "filepaths": [ {
-        "flowcell_name": "20120522",
-        "fastq_r1_locations": [
-          "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R1.fastq.gz"
-        ],
-        "fastq_r2_locations": [
-          "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG00651.unmapped.ILLUMINA.bwa.CHS.low_coverage.20120522.R2.fastq.gz"
-        ]
+      "filepaths": [{
+        "flowcell_name": "20121211",
+        "fastq_r1_locations": ["test/data/SRR581005_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["test/data/SRR581005_2.ds.fastq.gz"]
       }]
     },
     {
-      "dataset_id": "TF-WGS",
-      "sample_name": "HG01124",
-      "library_name": "HG01124",
+      "dataset_id": "TESTFASTQ2",
+      "sample_name": "HG02642",
+      "library_name": "SRR580946",
       "sequencing_center": "1000-Genomes",
-      "filepaths": [ {
-        "flowcell_name": "20120522",
-        "fastq_r1_locations": [
-          "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R1.fastq.gz"
-        ],
-        "fastq_r2_locations": [
-          "/fh/scratch/delete90/_DaSL/user/tfirman/fastq-to-cram/HG01124.unmapped.ILLUMINA.bwa.CLM.low_coverage.20120522.R2.fastq.gz"
-        ]
+      "filepaths": [{
+        "flowcell_name": "20121211",
+        "fastq_r1_locations": ["test/data/SRR580946_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["test/data/SRR580946_2.ds.fastq.gz"]
       }]
     }
   ]
