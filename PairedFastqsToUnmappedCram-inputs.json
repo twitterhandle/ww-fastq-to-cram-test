@@ -1,5 +1,5 @@
 {
-  "PairedFastqsToUnmappedCram.batchInfo": [
+  "PairedFastqsToUnmappedCram.batchInformation": [
     {
       "datasetID": "TF-WGS",
       "sampleName": "HG00651",

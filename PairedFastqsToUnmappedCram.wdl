@@ -68,13 +68,13 @@ workflow PairedFastqsToUnmappedCram {
     Array[File] validation = ValidateCram.validation
   }
 
-  parameter_meta (
+  parameter_meta {
     batchInfo: "array of inputData structs describing the relevant metadata for each sample"
 
     unmappedCrams: "array of unmapped cram files for each sample"
     unmappedCramIndexes: "array of index files for each unmapped cram file"
     validation: "text file containing all relevant validation statistics for the cram in question"
-  )
+  }
 } # End workflow
 
 #### TASK DEFINITIONS
