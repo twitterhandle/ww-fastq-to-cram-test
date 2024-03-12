@@ -68,13 +68,13 @@ workflow PairedFastqsToUnmappedCram {
     Array[File] validation = ValidateCram.validation
   }
 
-  parameter_meta (
+  parameter_meta {
     batchInfo: "array of inputData structs describing the relevant metadata for each sample"
 
     unmappedCrams: "array of unmapped cram files for each sample"
     unmappedCramIndexes: "array of index files for each unmapped cram file"
     validation: "text file containing all relevant validation statistics for the cram in question"
-  )
+  }
 } # End workflow
 
 #### TASK DEFINITIONS
@@ -116,7 +116,7 @@ task FastqtoUnmappedBam {
     docker: docker
   }
 
-  parameter_meta (
+  parameter_meta {
     R1fastq: "array of R1 fastq files for the library in question"
     R2fastq: "array of R2 fastq files for the library in question"
     base_file_name: "base file name to use in the read group and bam file names"
@@ -127,7 +127,7 @@ task FastqtoUnmappedBam {
     docker: "location of Docker image to use for this task"
 
     unmappedbam: "final unmapped bam file containing the reads from the fastqs in question"
-  )
+  }
 }
 
 # Validates cram files for formatting issues. 
@@ -157,13 +157,13 @@ task ValidateCram {
     docker: docker
   }
 
-  parameter_meta (
+  parameter_meta {
     unmappedCram: "unmapped cram file to validate"
     base_file_name: "base file name to use when saving the validation text file"
     docker: "location of Docker image to use for this task"
 
     validation: "text file containing all relevant validation statistics for the cram in question"
-  )
+  }
 }
 
 # Merges multiple bam files into a single cram file
@@ -192,7 +192,7 @@ task mergeBamstoCram {
     cpu: threads
   }
 
-  parameter_meta (
+  parameter_meta {
     bamsToMerge: "array of bam files to merge into a single cram file"
     base_file_name: "base file name to use when saving the cram file"
     docker: "location of Docker image to use for this task"
@@ -200,5 +200,5 @@ task mergeBamstoCram {
 
     cram: "final cram file containing all reads"
     crai: "index file of final cram"
-  )
+  }
 }
