@@ -9,7 +9,7 @@ permissions:
   packages: write
 
 jobs:
-  docker:
+  womtoolval:
     runs-on: ubuntu-latest
     steps:
       -
