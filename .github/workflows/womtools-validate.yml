@@ -1,4 +1,4 @@
-name: Docker Build and Upload CI
+name: WOMtool Validation of WDL Script
 
 on:
   pull_request:
