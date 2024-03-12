@@ -16,16 +16,17 @@ jobs:
         name: Checkout
         uses: actions/checkout@v4
       -
-        name: Set up Java
+        name: Set Up Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
       -
-        name: Build and Push
-        run: |
-          wget https://github.com/broadinstitute/cromwell/releases/download/86/womtool-86.jar
-          java -jar womtool-86.jar validate *.wdl
+        name: Pull WOMtool Jarfile
+        run: wget -q https://github.com/broadinstitute/cromwell/releases/download/86/womtool-86.jar
+      -
+        name: Validate WDL Scripts
+        run: java -jar womtool-86.jar validate *.wdl
 
 
 
