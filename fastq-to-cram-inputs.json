@@ -7,8 +7,8 @@
       "sequencing_center": "1000-Genomes",
       "filepaths": [{
         "flowcell_name": "20121211",
-        "fastq_r1_locations": ["test/data/SRR581005_1.ds.fastq.gz"],
-        "fastq_r2_locations": ["test/data/SRR581005_2.ds.fastq.gz"]
+        "fastq_r1_locations": ["tests/data/SRR581005_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["tests/data/SRR581005_2.ds.fastq.gz"]
       }]
     },
     {
@@ -18,8 +18,8 @@
       "sequencing_center": "1000-Genomes",
       "filepaths": [{
         "flowcell_name": "20121211",
-        "fastq_r1_locations": ["test/data/SRR580946_1.ds.fastq.gz"],
-        "fastq_r2_locations": ["test/data/SRR580946_2.ds.fastq.gz"]
+        "fastq_r1_locations": ["tests/data/SRR580946_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["tests/data/SRR580946_2.ds.fastq.gz"]
       }]
     }
   ]
