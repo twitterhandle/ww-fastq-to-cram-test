@@ -98,12 +98,12 @@ task FastqToUnmappedBam {
     FastqToSam \
       --FASTQ ~{sep=" " r1_fastq} \
       --FASTQ2 ~{sep=" " r2_fastq} \
-      --OUTPUT ~{base_file_name}.unmapped.bam \
-      --READ_GROUP_NAME ~{sample_name}_~{flowcell_name} \
-      --SAMPLE_NAME ~{sample_name} \
-      --LIBRARY_NAME ~{library_name} \
+      --OUTPUT "~{base_file_name}.unmapped.bam" \
+      --READ_GROUP_NAME "~{sample_name}_~{flowcell_name}" \
+      --SAMPLE_NAME "~{sample_name}" \
+      --LIBRARY_NAME "~{library_name}" \
       --PLATFORM illumina \
-      --SEQUENCING_CENTER ~{sequencing_center}
+      --SEQUENCING_CENTER "~{sequencing_center}"
   >>>
 
   output {
@@ -142,9 +142,9 @@ task ValidateCram {
     set -eo pipefail
     gatk --java-options "-Dsamjdk.compression_level=5 -Xms2g" \
       ValidateSamFile \
-        --INPUT ~{unmapped_cram} \
+        --INPUT "~{unmapped_cram}" \
         --MODE SUMMARY \
-        --IGNORE_WARNINGS false > ~{base_file_name}.validation.txt
+        --IGNORE_WARNINGS false > "~{base_file_name}.validation.txt"
   >>>
 
   output {
@@ -179,7 +179,7 @@ task MergeBamsToCram {
     set -eo pipefail
     samtools merge -@ ~{threads-1} \
       --write-index --output-fmt CRAM  \
-      ~{base_file_name}.merged.cram ~{sep=" " bams_to_merge} 
+      "~{base_file_name}.merged.cram" ~{sep=" " bams_to_merge} 
   >>>
 
   output {
