@@ -1,6 +1,6 @@
 version 1.0
 # Convert a group of paired fastq.gz files into an unmapped cram
-#  Uses the convention: READ_GROUP_NAME=~{sample_name}_~{flowcell_name}
+# Uses the convention: READ_GROUP_NAME=~{sample_name}_~{flowcell_name}
 
 #### STRUCT DEFINITIONS
 
@@ -112,7 +112,7 @@ task FastqToUnmappedBam {
 
   runtime {
     cpu: 4
-    memory: "8G"
+    memory: "8 GB"
     docker: docker
   }
 
@@ -188,8 +188,9 @@ task MergeBamsToCram {
   }
 
   runtime {
-    docker: docker
     cpu: threads
+    memory: "12 GB"
+    docker: docker
   }
 
   parameter_meta {
