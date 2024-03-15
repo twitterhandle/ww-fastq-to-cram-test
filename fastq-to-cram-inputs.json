@@ -1,0 +1,26 @@
+{
+  "PairedFastqsToUnmappedCram.batch_info": [
+    {
+      "dataset_id": "TESTFASTQ1",
+      "sample_name": "HG02635",
+      "library_name": "SRR581005",
+      "sequencing_center": "1000-Genomes",
+      "filepaths": [{
+        "flowcell_name": "20121211",
+        "fastq_r1_locations": ["tests/data/SRR581005_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["tests/data/SRR581005_2.ds.fastq.gz"]
+      }]
+    },
+    {
+      "dataset_id": "TESTFASTQ2",
+      "sample_name": "HG02642",
+      "library_name": "SRR580946",
+      "sequencing_center": "1000-Genomes",
+      "filepaths": [{
+        "flowcell_name": "20121211",
+        "fastq_r1_locations": ["tests/data/SRR580946_1.ds.fastq.gz"],
+        "fastq_r2_locations": ["tests/data/SRR580946_2.ds.fastq.gz"]
+      }]
+    }
+  ]
+}
