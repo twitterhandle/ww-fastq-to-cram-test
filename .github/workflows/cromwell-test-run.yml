@@ -23,7 +23,7 @@ jobs:
         run: wget -q https://github.com/broadinstitute/cromwell/releases/download/86/cromwell-86.jar
       -
         name: Execute Test Run of WDL Workflow
-        run: java -jar cromwell-86.jar run fastq-to-cram.wdl --inputs fastq-to-cram-inputs.json --options fastq-to-cram-options.json
+        run: java -jar cromwell-86.jar run ww-fastq-to-cram.wdl --inputs ww-fastq-to-cram-inputs.json --options ww-fastq-to-cram-options.json
 
 
 
