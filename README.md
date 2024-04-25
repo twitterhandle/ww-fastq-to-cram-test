@@ -6,7 +6,7 @@ This WILDS WDL workflow converts a WGS FASTQ file into an unmapped CRAM file. Wh
 
 ## Usage
 
-For Fred Hutch users that are new to WDL, we recommend using [PROOF](https://sciwiki.fredhutch.org/dasldemos/proof-how-to/) to submit this workflow directly to the on-premise HPC cluster, as it simplifies interaction with Cromwell and provides a user-friendly front-end for job submission and tracking. For users outside of Fred Hutch or more advanced users who who would like to run the workflow locally, command line execution is relatively simple: 
+For Fred Hutch users that are new to WDL, we recommend using [PROOF](https://sciwiki.fredhutch.org/dasldemos/proof-how-to/) to submit this workflow directly to the on-premise HPC cluster, as it simplifies interaction with Cromwell and provides a user-friendly front-end for job submission and tracking. For users outside of Fred Hutch or more advanced users who who would like to run the workflow locally, command line execution is relatively straighforward: 
 ```
 java -jar cromwell-86.jar run ww-fastq-to-cram.wdl \
     --inputs ww-fastq-to-cram-inputs.json \
